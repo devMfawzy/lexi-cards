@@ -63,3 +63,25 @@ jobs:
       - run: flutter pub get
 
       - run: flutter build apk --debug
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Scans the working tree, not history. A key that was committed once can
+      # never be removed from history, so scanning history would fail forever
+      # and teach everyone to ignore the job. This fails only when a new secret
+      # is about to land.
+      #
+      # This job must not build anything. gitleaks scans every file on disk,
+      # including gitignored build output and vendored dependencies, which
+      # carry example keys of their own. A bare checkout is exactly the
+      # tracked tree, which is what we want scanned.
+      - name: Scan for secrets
+        env:
+          GITLEAKS_VERSION: 8.30.1
+        run: |
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" \
+            | tar -xz gitleaks
+          ./gitleaks dir . --redact --no-banner
