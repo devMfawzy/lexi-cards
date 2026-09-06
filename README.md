@@ -1,6 +1,6 @@
 # Lexi Cards
 
-[![CI](https://github.com/devMfawzy/lexi_cards/actions/workflows/ci.yml/badge.svg)](https://github.com/devMfawzy/lexi_cards/actions/workflows/ci.yml)
+[![CI](https://github.com/devMfawzy/lexi-cards/actions/workflows/ci.yml/badge.svg)](https://github.com/devMfawzy/lexi-cards/actions/workflows/ci.yml)
 
 A spaced-repetition flashcard app, Anki-style, built in Flutter. You create decks, add cards, and review them on a schedule driven by the SM-2 algorithm — the same family of algorithm Anki and SuperMemo use. Rate a card Again/Hard/Good/Easy and the app decides when you'll see it next.
 
